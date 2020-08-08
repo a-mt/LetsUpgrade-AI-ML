@@ -1,0 +1,57 @@
+<style>
+.cell h2::before,
+.cell h3::before,
+.cell h4::before,
+.cell h5::before,
+.cell h6::before {
+    content: "▼";
+    position: absolute;
+    left: 5px;
+    cursor: pointer;
+}
+.cell.collapsed h2::before,
+.cell.collapsed h3::before,
+.cell.collapsed h4::before,
+.cell.collapsed h5::before,
+.cell.collapsed h6::before {
+    content: "►";
+}
+.cell.hidden {
+    display: none;
+}
+</style>
+<script>
+    $('body').off('click.collapse')
+             .on('click.collapse', '.rendered_html :header', function(e){
+        // Click on ::before pseudo-element
+        if(this.offsetLeft <= e.originalEvent.clientX) {
+            return;
+        }
+        // Collapse current cell
+        var cellLevel = parseInt(this.nodeName.substr(1)),
+            $cell     = $(this).closest('.cell'),
+            collapse  = !$cell.hasClass('collapsed');
+
+        $cell.toggleClass('collapsed', collapse);
+
+        // Hide next siblings
+        while(true){
+            $cell = $cell.next('.cell');
+            if(!$cell.length) {
+                break;
+            }
+            // Break on next title with level > current
+            if($cell.hasClass('text_cell')) {
+                let header = $cell.find('.rendered_html >:header');
+
+                if(header.length) {
+                    let level = header.get(0).nodeName.substr(1);
+                    if(parseInt(level) <= cellLevel) {
+                        break;
+                    }
+                }
+            }
+            $cell.toggleClass('hidden', collapse);
+        }
+    })
+</script>
