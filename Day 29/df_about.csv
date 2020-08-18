@@ -1,0 +1,18 @@
+Dataset,# Samples,# Dimensions,Missing %
+arrhythmia.mat,452,2,14.6018
+letter.mat,1600,2,6.25
+optdigits.mat,5216,2,2.8758
+satellite.mat,6435,2,31.6395
+vowels.mat,1456,2,3.4341
+cardio.mat,1831,2,9.6122
+lympho.mat,148,2,4.0541
+pendigits.mat,6870,2,2.2707
+satimage-2.mat,5803,2,1.2235
+wbc.mat,378,2,5.5556
+glass.mat,214,2,4.2056
+mnist.mat,7603,2,9.2069
+pima.mat,768,2,34.8958
+shuttle.mat,49097,2,7.1511
+ionosphere.mat,351,2,35.8974
+musk.mat,3062,2,3.1679
+vertebral.mat,240,2,12.5
